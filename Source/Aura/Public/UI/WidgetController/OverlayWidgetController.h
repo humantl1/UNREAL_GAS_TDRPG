@@ -63,4 +63,13 @@ protected:
 	void OnMaxHealthChangedCallback(const FOnAttributeChangeData& Data) const;
 	void OnManaChangedCallback(const FOnAttributeChangeData& Data) const;
 	void OnMaxManaChangedCallback(const FOnAttributeChangeData& Data) const;
+
+	template<typename T>
+	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
 };
+
+template <typename T>
+T* UOverlayWidgetController::GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag)
+{
+	return DataTable->FindRow<T>(Tag.GetTagName(), TEXT(""));
+}
